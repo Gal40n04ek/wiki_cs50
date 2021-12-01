@@ -1,0 +1,25 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+    <h1>Creating a new page...</h1>
+    {% if adder_checker%}
+    <h2>ERROR: You're trying to create a page that already exists!</h2>
+    <div>
+        If you want to view or edit this <a href="/wiki/{{entry}}" class="alert-link">click here</a>
+    </div>
+    {% else %}
+
+    <p></p> 
+    <form action="{% url 'add' %}" method="post" class="add_form">
+        {% csrf_token %}
+        {{ form }}
+        <p></p>   
+        <input type="submit" value="Save" class="button" id="save_button">
+    </form>
+    {% endif %}
+
+{% endblock %}
